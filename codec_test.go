@@ -36,7 +36,7 @@ func TestFromBytes(t *testing.T) {
 	require.NoError(t, err)
 	assert.Equal(t, u, u1)
 
-	b2 := []byte{}
+	var b2 []byte
 	_, err = FromBytes(b2)
 	assert.Error(t, err)
 }
@@ -113,17 +113,19 @@ func BenchmarkFromString(b *testing.B) {
 	}
 }
 
-func (s *codecTestSuite) BenchmarkFromStringUrn(c *C) {
+func BenchmarkFromStringUrn(b *testing.B) {
 	str := "urn:uuid:6ba7b810-9dad-11d1-80b4-00c04fd430c8"
-	for i := 0; i < c.N; i++ {
-		FromString(str)
+	for i := 0; i < b.N; i++ {
+		_, err := FromString(str)
+		require.NoError(b, err)
 	}
 }
 
-func (s *codecTestSuite) BenchmarkFromStringWithBrackets(c *C) {
+func BenchmarkFromStringWithBrackets(b *testing.B) {
 	str := "{6ba7b810-9dad-11d1-80b4-00c04fd430c8}"
-	for i := 0; i < c.N; i++ {
-		FromString(str)
+	for i := 0; i < b.N; i++ {
+		_, err := FromString(str)
+		require.NoError(b, err)
 	}
 }
 
