@@ -44,7 +44,7 @@ func TestFromBytes(t *testing.T) {
 func BenchmarkFromBytes(b *testing.B) {
 	bytes := []byte{0x6b, 0xa7, 0xb8, 0x10, 0x9d, 0xad, 0x11, 0xd1, 0x80, 0xb4, 0x00, 0xc0, 0x4f, 0xd4, 0x30, 0xc8}
 	for i := 0; i < b.N; i++ {
-		FromBytes(bytes)
+		_, _ = FromBytes(bytes)
 	}
 }
 
@@ -61,7 +61,7 @@ func BenchmarkMarshalBinary(b *testing.B) {
 	u, err := NewV4()
 	require.NoError(b, err)
 	for i := 0; i < b.N; i++ {
-		u.MarshalBinary()
+		_, _ = u.MarshalBinary()
 	}
 }
 
@@ -109,7 +109,7 @@ func TestFromString(t *testing.T) {
 func BenchmarkFromString(b *testing.B) {
 	str := "6ba7b810-9dad-11d1-80b4-00c04fd430c8"
 	for i := 0; i < b.N; i++ {
-		FromString(str)
+		_, _ = FromString(str)
 	}
 }
 
@@ -204,7 +204,7 @@ func BenchmarkMarshalText(b *testing.B) {
 	u, err := NewV4()
 	require.NoError(b, err)
 	for i := 0; i < b.N; i++ {
-		u.MarshalText()
+		_, _ = u.MarshalText()
 	}
 }
 
@@ -227,7 +227,7 @@ func BenchmarkUnmarshalText(b *testing.B) {
 	bytes := []byte("6ba7b810-9dad-11d1-80b4-00c04fd430c8")
 	u := UUID{}
 	for i := 0; i < b.N; i++ {
-		u.UnmarshalText(bytes)
+		_ = u.UnmarshalText(bytes)
 	}
 }
 

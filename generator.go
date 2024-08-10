@@ -79,6 +79,7 @@ func NewV6() (UUID, error) {
 	return global.NewV6()
 }
 
+// NewV7 returns UUID v7
 func NewV7() (UUID, error) {
 	return global.NewV7()
 }
